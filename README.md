@@ -1,7 +1,5 @@
 # JinOwner
-openai
-
 ---
-Only test
+Jin's AI Chat Open1
 
 ---
