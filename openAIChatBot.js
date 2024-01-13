@@ -1,13 +1,13 @@
-let chatMessages = document.querySelector('#chat-messages');
-let userInput = document.querySelector('#user-input input');
-let sendButton = document.querySelector('#user-input button');
-let apiKey = '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';
-let apiEndpoint = 'https://api.openai.com/v1/chat/completions'
+const chatMessages = document.querySelector('#chat-messages');
+const userInput = document.querySelector('#user-input input');
+const sendButton = document.querySelector('#user-input button');
+const apiKey = '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';
+const apiEndpoint = 'https://api.openai.com/v1/chat/completions';
 
 // ChatGPT API 요청
 async function fetchAIResponse(prompt) {
     // API 요청에 사용할 옵션을 정의
-    let openAIRequestOptions  = {
+    const openAIRequestOptions  = {
         method: 'POST',
         // API 요청의 헤더를 설정
         headers: {
@@ -30,9 +30,9 @@ async function fetchAIResponse(prompt) {
     };
     // API 요청 후 응답 및 에러 처리
     try {
-        let response = await fetch(apiEndpoint, openAIRequestOptions );
-        let data = await response.json();
-        let aiResponse = data.choices[0].message.content;
+        const response = await fetch(apiEndpoint, openAIRequestOptions );
+        const data = await response.json();
+        const aiResponse = data.choices[0].message.content;
         return aiResponse;
     } catch (error) {
 		console.error('Error occurred while calling OpenAI API', error);
@@ -42,14 +42,14 @@ async function fetchAIResponse(prompt) {
 // 전송 버튼 클릭 이벤트 처리
 sendButton.addEventListener('click', async () => {
     // 사용자가 입력한 메시지를 가져옴
-    let message = userInput.value.trim();
+    const message = userInput.value.trim();
     // 메시지가 빈 경우 그대로 리턴
     if (message.length === 0) return;
     // 사용자 메시지 화면에 추가
     addMessage('나', message);
     userInput.value = '';
     //ChatGPT API 요청후 답변을 화면에 추가
-    let aiResponse = await fetchAIResponse(message);
+    const aiResponse = await fetchAIResponse(message);
     addMessage('챗봇', aiResponse);
 });
 
@@ -60,8 +60,8 @@ userInput.addEventListener('keydown', (event) => {
     }
 });
 
-for (let i = 0; i < 50; i++) {
-    let star = document.createElement('div');
+for (const i = 0; i < 50; i++) {
+    const star = document.createElement('div');
     star.classList.add('star');
     star.style.left = Math.random()*window.innerWidth + 'px';
     star.style.top = Math.random()*window.innerWidth + 'px';
@@ -70,11 +70,11 @@ for (let i = 0; i < 50; i++) {
 
 // 메시지를 화면에 추가
 function addMessage(sender, message) {
-    let messageElement = document.createElement('div');
+    const messageElement = document.createElement('div');
     messageElement.classList.add('message');
     messageElement.classList.add(sender === '나' ? 'right' : 'left');
     let i = 0;
-    let intervalId = setInterval(() => {
+    const intervalId = setInterval(() => {
         if (i < message.length) {
             messageElement.textContent += message[i];
             i++;

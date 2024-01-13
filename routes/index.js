@@ -3,7 +3,7 @@ const path = require('path');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../html/AI_Chat.html'));
+    res.sendFile(path.join(__dirname, './AI_Chat.html'));
 });
 
 module.exports = router;
