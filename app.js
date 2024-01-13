@@ -3,7 +3,7 @@ const app = express()
 
 app.set('port', process.env.PORT || 3001);
 
-const indexRouter = require('./routes');
+const indexRouter = require('./routes'); // index.js는 생략 가능
 
 app.use('/', indexRouter);
 
