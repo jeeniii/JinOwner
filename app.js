@@ -3,10 +3,13 @@ const app = express();
 
 app.set('port', process.env.PORT || 3001);
 
-const indexRouter = require('./routes'); // index.js는 생략 가능
 
-app.use('/', indexRouter);
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'AI_Chat.html'));
+});
+
+app.use(express.static('public'));
 app.use((req, res, next) => {
   res.status(404).send('Not Found');
 });
